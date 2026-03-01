@@ -8,5 +8,18 @@ func FormatMenuLabel(tag, text string, width int) string {
 	if width <= 0 {
 		width = 12
 	}
-	return fmt.Sprintf("%-*s %s", width, "["+tag+"]", text)
+	left := ""
+	if tag != "" {
+		left = "[" + tag + "]"
+	}
+	return fmt.Sprintf("%-*s %s", width, left, text)
+}
+
+// Colorize wraps a string with an ANSI color code and resets formatting.
+// Pass empty color to keep the text unchanged.
+func Colorize(text, color string) string {
+	if color == "" {
+		return text
+	}
+	return color + text + "\033[0m"
 }

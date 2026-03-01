@@ -17,3 +17,26 @@ func TestFormatMenuLabel_CustomWidth(t *testing.T) {
 		t.Fatalf("unexpected label: got %q want %q", got, want)
 	}
 }
+
+func TestFormatMenuLabel_EmptyTag(t *testing.T) {
+	got := FormatMenuLabel("", "Exit", 14)
+	want := "               Exit"
+	if got != want {
+		t.Fatalf("unexpected label: got %q want %q", got, want)
+	}
+}
+
+func TestColorize_EmptyColor(t *testing.T) {
+	got := Colorize("abc", "")
+	if got != "abc" {
+		t.Fatalf("unexpected colorized text: %q", got)
+	}
+}
+
+func TestColorize_WithColor(t *testing.T) {
+	got := Colorize("abc", "\033[31m")
+	want := "\033[31mabc\033[0m"
+	if got != want {
+		t.Fatalf("unexpected colorized text: got %q want %q", got, want)
+	}
+}

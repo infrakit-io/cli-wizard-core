@@ -6,6 +6,8 @@ Highlights:
 - Added generic `Manage` flow for list-based resources:
   create, edit existing, delete, set default, cancel.
 - Added `FormatMenuLabel` helper for consistent two-column CLI menu alignment.
+- `FormatMenuLabel` now supports empty tag values for aligned untagged rows (e.g. `Exit`).
+- Added `Colorize` helper for consistent ANSI color wrapping without duplicated reset logic.
 
 Notes:
 
