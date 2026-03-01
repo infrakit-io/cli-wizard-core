@@ -3,11 +3,12 @@ Release Notes
 Unreleased
 Highlights:
 
-TBD
+- Added generic `Manage` flow for list-based resources:
+  create, edit existing, delete, set default, cancel.
 
 Notes:
 
-TBD
+- Core remains provider-agnostic (no Talos/VMware domain logic).
 
 v0.1.2 (2026-03-01)
 Highlights:
