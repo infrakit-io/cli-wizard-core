@@ -2,8 +2,8 @@
 
 [![CI](https://github.com/Bibi40k/cli-wizard-core/actions/workflows/ci.yml/badge.svg)](https://github.com/Bibi40k/cli-wizard-core/actions/workflows/ci.yml)
 [![Release](https://github.com/Bibi40k/cli-wizard-core/actions/workflows/release.yml/badge.svg)](https://github.com/Bibi40k/cli-wizard-core/actions/workflows/release.yml)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/Bibi40k/cli-wizard-core)](https://github.com/Bibi40k/cli-wizard-core/blob/main/go.mod)
-[![License](https://img.shields.io/github/license/Bibi40k/cli-wizard-core)](https://github.com/Bibi40k/cli-wizard-core/blob/main/LICENSE)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/bibi40k/cli-wizard-core)](https://github.com/Bibi40k/cli-wizard-core/blob/main/go.mod)
+[![License](https://img.shields.io/github/license/bibi40k/cli-wizard-core)](https://github.com/Bibi40k/cli-wizard-core/blob/main/LICENSE)
 
 Reusable core primitives for interactive CLI wizards in Go.
 
