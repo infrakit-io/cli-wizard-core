@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+Release date: TBD
+
 ### Added
 - Placeholder for upcoming changes.
 
@@ -15,6 +17,8 @@
 - None.
 
 ## v0.1.0
+
+Release date: 2026-03-01
 
 ### Added
 - Initial `Session` core for wizard draft lifecycle orchestration.
