@@ -25,7 +25,9 @@ This creates operator confusion and unpredictable automation behavior.
    - first `Ctrl+C` exits the application immediately.
 4. `Esc` acts as explicit `Back` in selector-style menus.
 5. No silent conversion of interrupt into default value.
-6. `Back` must be visually distinct (yellow) and consistently detectable even when colorized.
+6. `Back`/`Exit` labels remain plain by default; highlight color is applied by the active selector only when selected.
+7. Selector hint is standardized as: `[Use arrows to move, type to filter, Esc=Back, Ctrl+C=Exit]`.
+8. Shared wizard behavior changes are implemented in `cli-wizard-core` first; consumer repos must not keep divergent local copies of shared selector/interrupt logic.
 
 ## Required Acceptance Checks
 For each consumer repo integrating this library:
@@ -36,6 +38,7 @@ For each consumer repo integrating this library:
 5. `Ctrl+C` from selector prompts (`survey`/custom raw mode) is handled on first keypress.
 6. `Ctrl+C` from line prompts (`readline`) is handled on first keypress.
 7. `Esc` in selector prompts returns Back (or Exit if Back missing).
+8. Consumer repos integrate behavior via core dependency updates, not punctual local rewrites.
 
 ## Consequences
 - Predictable UX across repositories.

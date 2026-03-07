@@ -31,10 +31,27 @@ func TestBackHelpers(t *testing.T) {
 		t.Fatalf("expected plain Back to be recognized")
 	}
 	if !IsBackChoice(BackLabel()) {
-		t.Fatalf("expected colored BackLabel to be recognized")
+		t.Fatalf("expected BackLabel to be recognized")
 	}
 	if !IsBackChoice(BackMenuLabel(16)) {
-		t.Fatalf("expected colored BackMenuLabel to be recognized")
+		t.Fatalf("expected BackMenuLabel to be recognized")
+	}
+	if !IsExitChoice("Exit") {
+		t.Fatalf("expected plain Exit to be recognized")
+	}
+	if !IsExitChoice(ExitLabel()) {
+		t.Fatalf("expected ExitLabel to be recognized")
+	}
+	if !IsExitChoice(ExitMenuLabel(16)) {
+		t.Fatalf("expected ExitMenuLabel to be recognized")
+	}
+}
+
+func TestSelectHint(t *testing.T) {
+	got := SelectHint()
+	want := "[Use arrows to move, type to filter, Esc=Back, Ctrl+C=Exit]"
+	if got != want {
+		t.Fatalf("unexpected select hint: got %q want %q", got, want)
 	}
 }
 

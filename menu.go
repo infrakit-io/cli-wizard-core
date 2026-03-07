@@ -32,12 +32,27 @@ func Colorize(text, color string) string {
 
 // BackLabel returns a consistently colored "Back" label.
 func BackLabel() string {
-	return Colorize("Back", "\033[33m")
+	return "Back"
 }
 
 // BackMenuLabel renders a colored Back label aligned like menu entries.
 func BackMenuLabel(width int) string {
-	return Colorize(FormatMenuLabel("", "Back", width), "\033[33m")
+	return FormatMenuLabel("", "Back", width)
+}
+
+// ExitLabel returns a normalized "Exit" label.
+func ExitLabel() string {
+	return "Exit"
+}
+
+// ExitMenuLabel renders an Exit label aligned like menu entries.
+func ExitMenuLabel(width int) string {
+	return FormatMenuLabel("", "Exit", width)
+}
+
+// SelectHint returns the standard selector help hint used across wizard UIs.
+func SelectHint() string {
+	return "[Use arrows to move, type to filter, Esc=Back, Ctrl+C=Exit]"
 }
 
 // NormalizeChoice strips ANSI colors and trims whitespace for robust comparisons.
@@ -48,4 +63,9 @@ func NormalizeChoice(value string) string {
 // IsBackChoice checks whether a selected value maps to Back.
 func IsBackChoice(value string) bool {
 	return strings.EqualFold(NormalizeChoice(value), "Back")
+}
+
+// IsExitChoice checks whether a selected value maps to Exit.
+func IsExitChoice(value string) bool {
+	return strings.EqualFold(NormalizeChoice(value), "Exit")
 }

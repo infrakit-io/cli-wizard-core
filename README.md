@@ -19,6 +19,8 @@ This library defines shared wizard behavior contracts used by consumer repos.
 - `FormatMenuLabel`: aligned two-column menu labels (`[tag]` + text)
 - `Colorize`: ANSI color wrapper for labels/messages
 - `BackLabel` / `BackMenuLabel` / `IsBackChoice`: consistent Back UX primitives
+- `ExitLabel` / `ExitMenuLabel` / `IsExitChoice`: consistent Exit UX primitives
+- `SelectHint`: standard selector hint (`[Use arrows to move, type to filter, Esc=Back, Ctrl+C=Exit]`)
 - `NewUserError` / `WithHint`: attach actionable hints to user-facing errors
 - `FormatCLIError`: consistent colored error+hint output for CLIs
 - `ReconcileWithTemplate`: generic template sync for config objects (`added/removed/missing-required` report)
