@@ -9,3 +9,6 @@ jobs:
     uses: infrakit-io/repo-standards-kit/.github/workflows/go-ci.yml@v1
     permissions:
       contents: write
+    with:
+      coverage-badge: true
+      coverage-threshold: 50
