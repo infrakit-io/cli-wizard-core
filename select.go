@@ -80,9 +80,9 @@ func (s *Selector) Select(items []string, defaultItem, message string) string {
 
 	render := func() {
 		if renderedLines > 0 {
-			fmt.Fprintf(os.Stdout, "\r\033[%dA\033[J", renderedLines)
+			_, _ = fmt.Fprintf(os.Stdout, "\r\033[%dA\033[J", renderedLines)
 		} else {
-			fmt.Fprint(os.Stdout, "\r\033[J")
+			_, _ = fmt.Fprint(os.Stdout, "\r\033[J")
 		}
 
 		filtered := filterItems(items, query)
@@ -98,12 +98,12 @@ func (s *Selector) Select(items []string, defaultItem, message string) string {
 		if isDestructive {
 			hdrColor = "\033[1;31m"
 		}
-		fmt.Fprintf(os.Stdout, "\033[32m?\033[0m %s%s\033[0m  \033[36m%s\033[0m",
+		_, _ = fmt.Fprintf(os.Stdout, "\033[32m?\033[0m %s%s\033[0m  \033[36m%s\033[0m",
 			hdrColor, strings.TrimSpace(message), SelectHint())
 		if query != "" {
-			fmt.Fprintf(os.Stdout, "  (filter: %s)", query)
+			_, _ = fmt.Fprintf(os.Stdout, "  (filter: %s)", query)
 		}
-		fmt.Fprint(os.Stdout, "\r\n")
+		_, _ = fmt.Fprint(os.Stdout, "\r\n")
 		lines := 1
 
 		// Items
@@ -126,23 +126,23 @@ func (s *Selector) Select(items []string, defaultItem, message string) string {
 				} else if isDestructive || strings.HasPrefix(strings.ToLower(clean), "delete ") {
 					color = "\033[31m"
 				}
-				fmt.Fprintf(os.Stdout, "  %s❯ %s\033[0m\r\n", color, item)
+				_, _ = fmt.Fprintf(os.Stdout, "  %s❯ %s\033[0m\r\n", color, item)
 			} else {
-				fmt.Fprintf(os.Stdout, "    %s\r\n", item)
+				_, _ = fmt.Fprintf(os.Stdout, "    %s\r\n", item)
 			}
 			lines++
 		}
 
 		if len(filtered) == 0 {
-			fmt.Fprint(os.Stdout, "    (no matches)\r\n")
+			_, _ = fmt.Fprint(os.Stdout, "    (no matches)\r\n")
 			lines++
 		}
 
 		// Footer
 		if maxVis > 0 && len(filtered) > maxVis {
-			fmt.Fprintf(os.Stdout, "  \033[2m%d/%d\033[0m\r\n", cursor+1, len(filtered))
+			_, _ = fmt.Fprintf(os.Stdout, "  \033[2m%d/%d\033[0m\r\n", cursor+1, len(filtered))
 		} else {
-			fmt.Fprint(os.Stdout, "\r\n")
+			_, _ = fmt.Fprint(os.Stdout, "\r\n")
 		}
 		lines++
 
@@ -151,9 +151,9 @@ func (s *Selector) Select(items []string, defaultItem, message string) string {
 
 	showResult := func(result string) {
 		if renderedLines > 0 {
-			fmt.Fprintf(os.Stdout, "\r\033[%dA\033[J", renderedLines)
+			_, _ = fmt.Fprintf(os.Stdout, "\r\033[%dA\033[J", renderedLines)
 		} else {
-			fmt.Fprint(os.Stdout, "\r\033[J")
+			_, _ = fmt.Fprint(os.Stdout, "\r\033[J")
 		}
 		if result != "" {
 			rc := "\033[36m"
@@ -163,7 +163,7 @@ func (s *Selector) Select(items []string, defaultItem, message string) string {
 			} else if IsBackChoice(clean) || IsExitChoice(clean) || IsCancelChoice(clean) {
 				rc = "\033[33m"
 			}
-			fmt.Fprintf(os.Stdout, "\033[32m?\033[0m %s %s%s\033[0m\r\n",
+			_, _ = fmt.Fprintf(os.Stdout, "\033[32m?\033[0m %s %s%s\033[0m\r\n",
 				strings.TrimSpace(message), rc, result)
 		}
 	}
