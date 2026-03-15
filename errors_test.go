@@ -62,6 +62,47 @@ func TestFormatCLIError_WithoutHint(t *testing.T) {
 	}
 }
 
+func TestErrorHint_Nil(t *testing.T) {
+	if got := ErrorHint(nil); got != "" {
+		t.Fatalf("ErrorHint(nil) = %q, want empty", got)
+	}
+}
+
+func TestWithHint_Nil(t *testing.T) {
+	if err := WithHint(nil, "hint"); err != nil {
+		t.Fatalf("WithHint(nil) should return nil, got %v", err)
+	}
+}
+
+func TestFormatCLIError_Nil(t *testing.T) {
+	if got := FormatCLIError(nil); got != "" {
+		t.Fatalf("FormatCLIError(nil) = %q, want empty", got)
+	}
+}
+
+func TestUserError_NilReceiver(t *testing.T) {
+	var e *UserError
+	if got := e.Error(); got != "" {
+		t.Fatalf("(*UserError)(nil).Error() = %q, want empty", got)
+	}
+	if got := e.Hint(); got != "" {
+		t.Fatalf("(*UserError)(nil).Hint() = %q, want empty", got)
+	}
+}
+
+func TestHintedError_NilReceiver(t *testing.T) {
+	var e *hintedError
+	if got := e.Error(); got != "" {
+		t.Fatalf("(*hintedError)(nil).Error() = %q, want empty", got)
+	}
+	if got := e.Unwrap(); got != nil {
+		t.Fatalf("(*hintedError)(nil).Unwrap() = %v, want nil", got)
+	}
+	if got := e.Hint(); got != "" {
+		t.Fatalf("(*hintedError)(nil).Hint() = %q, want empty", got)
+	}
+}
+
 func TestIsInterrupted(t *testing.T) {
 	if !IsInterrupted(ErrInterrupted) {
 		t.Fatal("expected sentinel to be recognized")

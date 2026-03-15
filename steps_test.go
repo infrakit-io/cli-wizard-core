@@ -37,3 +37,29 @@ func TestRunStepsStopsOnError(t *testing.T) {
 		t.Fatalf("count = %d, want 1", count)
 	}
 }
+
+func TestDefaultRunSteps(t *testing.T) {
+	var ran []string
+	err := DefaultRunSteps([]Step{
+		{Name: "first step", Run: func() error { ran = append(ran, "A"); return nil }},
+		{Name: "", Run: func() error { ran = append(ran, "B"); return nil }},
+		{Name: "third step", Run: func() error { ran = append(ran, "C"); return nil }},
+	})
+	if err != nil {
+		t.Fatalf("DefaultRunSteps: %v", err)
+	}
+	if !reflect.DeepEqual(ran, []string{"A", "B", "C"}) {
+		t.Fatalf("ran = %v, want [A B C]", ran)
+	}
+}
+
+func TestDefaultRunSteps_Error(t *testing.T) {
+	boom := errors.New("step failed")
+	err := DefaultRunSteps([]Step{
+		{Name: "ok", Run: func() error { return nil }},
+		{Name: "fail", Run: func() error { return boom }},
+	})
+	if !errors.Is(err, boom) {
+		t.Fatalf("err = %v, want boom", err)
+	}
+}

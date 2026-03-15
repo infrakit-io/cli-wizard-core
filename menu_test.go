@@ -78,6 +78,26 @@ func TestActionVerb(t *testing.T) {
 	}
 }
 
+func TestFormatActionLabel_EdgeCases(t *testing.T) {
+	if got := FormatActionLabel("", 9); got != "" {
+		t.Fatalf("empty input should return empty, got %q", got)
+	}
+	if got := FormatActionLabel("SingleWord", 9); got != "SingleWord" {
+		t.Fatalf("single word should be unchanged, got %q", got)
+	}
+	// verbWidth <= 0 should default to 9
+	got := FormatActionLabel("Create cluster", 0)
+	if got == "" {
+		t.Fatalf("FormatActionLabel with width=0 returned empty")
+	}
+}
+
+func TestActionVerb_Empty(t *testing.T) {
+	if got := ActionVerb(""); got != "" {
+		t.Fatalf("ActionVerb(\"\") = %q, want empty", got)
+	}
+}
+
 func TestColorize_EmptyColor(t *testing.T) {
 	got := Colorize("abc", "")
 	if got != "abc" {
