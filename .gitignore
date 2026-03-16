@@ -1,2 +1,5 @@
 # Claude Code internal state
 .claude/
+
+# Test artifacts
+tmp/
